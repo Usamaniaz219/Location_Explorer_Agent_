@@ -8,9 +8,7 @@ An intelligent agent for analyzing underutilized properties and recommending opt
 - 📊 Analyzes zoning regulations and permitted uses via Zoneomics API
 - 🗺️ Generates interactive Folium maps with property recommendations
 - 🤖 Provides AI-powered recommendations for:
-  - Office space conversion
-  - Retail development
-  - Mixed-use opportunities
+  - Office space conversions
 - 📈 Regression modeling for available square footage prediction
 - 🐳 Docker container for easy deployment
 
