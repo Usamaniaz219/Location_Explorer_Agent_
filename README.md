@@ -17,7 +17,7 @@ An intelligent agent for analyzing underutilized properties and recommending opt
 ## Prerequisites
 
 - Docker Desktop ([Install Guide](https://docs.docker.com/get-docker/))
-- Zoneomics API key (optional for zoning analysis)
+- Zoneomics API key (for zoning analysis)
 - Python 3.12 (if running locally)
 
 ## Installation
