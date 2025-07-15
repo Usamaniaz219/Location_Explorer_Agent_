@@ -30,3 +30,18 @@ docker build -t location-explorer .
 
 # 2. Run the container with volume mounts
 docker run -v ./output:/app/output -v ./pretrained_models:/app/pretrained_models location-explorer
+
+#Local Python Installation
+# 1. Install Poetry
+pip install poetry
+
+# 2. Install dependencies
+poetry install
+
+# 3. Run the agent
+poetry run python scripts/run_agent.py
+
+#Set environment variables in .env file:
+ZONING_API_KEY=852fba3cae77d1533c563d58d6ad03e32d5d1e7
+DATA_PATH=data/properties.xlsx
+MODEL_PATH=pretrained_models/classification_model.joblib
