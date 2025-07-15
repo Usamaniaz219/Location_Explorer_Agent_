@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_752460d259ae8142951013d34b60f99a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <h3 align="center" style="font-size:16px">
+            <b>Underutilized Properties with Office Conversion Recommendations</b>
+            </h3>
+        
+    
+            <div style="position: fixed; 
+                        bottom: 50px; left: 50px; width: 150px; height: 120px; 
+                        border:2px solid grey; z-index:9999; font-size:12px;
+                        background-color:white;
+                        opacity: 0.85;
+                        ">
+                <div style="padding: 5px;">
+                    <p style="margin: 0 0 5px;"><i class="fa fa-building" style="color: green"></i> Office Recommended</p>
+                    <p style="margin: 0 0 5px;"><i class="fa fa-building" style="color: blue"></i> Commercial Zone</p>
+                    <p style="margin: 0 0 5px;"><i class="fa fa-building" style="color: purple"></i> Residential Zone</p>
+                    <p style="margin: 0 0 5px;"><i class="fa fa-building" style="color: orange"></i> Industrial Zone</p>
+                    <p style="margin: 0 0 5px;"><i class="fa fa-building" style="color: gray"></i> Other Zone</p>
+                </div>
+            </div>
+        
+    
+            <div class="folium-map" id="map_752460d259ae8142951013d34b60f99a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_752460d259ae8142951013d34b60f99a = L.map(
+                "map_752460d259ae8142951013d34b60f99a",
+                {
+                    center: [40.715455, -74.004141],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0e47ae25b515d51e2e1b64341ec2750d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0e47ae25b515d51e2e1b64341ec2750d.addTo(map_752460d259ae8142951013d34b60f99a);
+        
+    
+            var feature_group_3e6e14a9e5be8499531fb7b2b246f5b5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_461f66be266202bf84abbc446132064d = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_8d20d1d568bb0f425344e25ba48a0a46 = L.marker(
+                [40.914708, -74.166961],
+                {
+}
+            ).addTo(marker_cluster_461f66be266202bf84abbc446132064d);
+        
+    
+            var icon_7f42ff3dd9274be9888ac7b02395fd74 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4104170c58d530830d3fc83a911d667c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3ab9caecaa3429156fdbb6b36ee41d91 = $(`<div id="html_3ab9caecaa3429156fdbb6b36ee41d91" style="width: 100.0%; height: 100.0%;">             <b>ROBERT A. ROE FB</b><br>             <b>Address:</b> 200 FEDERAL PLAZA, PATERSON, NJ<br>             <b>Available Space:</b> 19,661 sqft (36.7%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Business District (B-3)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, personal services, eating and drinking establishments, professional services, hotel/motel, parking garage or lot, public, quasi-public, and government, schools and universities, medical, professional office, storage and warehouses, communication towers, multi family dwelling<br>             <hr>             <b>Office Conversion:</b>  <strong>RECOMMENDED</strong><br>             <small> Sufficient space (19,661 sqft) |  Zoning permits offices |  Current use may require renovation (building) |  STRONG RECOMMENDATION for office conversion</small>             </div>`)[0];
+                popup_4104170c58d530830d3fc83a911d667c.setContent(html_3ab9caecaa3429156fdbb6b36ee41d91);
+            
+        
+
+        marker_8d20d1d568bb0f425344e25ba48a0a46.bindPopup(popup_4104170c58d530830d3fc83a911d667c)
+        ;
+
+        
+    
+    
+            marker_8d20d1d568bb0f425344e25ba48a0a46.bindTooltip(
+                `<div>
+                      ROBERT A. ROE FB - Office Recommended
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8d20d1d568bb0f425344e25ba48a0a46.setIcon(icon_7f42ff3dd9274be9888ac7b02395fd74);
+            
+    
+            var marker_036715b4712ceaee74debfc68bb9c4a4 = L.marker(
+                [41.028876, -73.771196],
+                {
+}
+            ).addTo(marker_cluster_461f66be266202bf84abbc446132064d);
+        
+    
+            var icon_645c23ca47ed3e8f5348d94b7c691e8f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b6c73682328e681fd73765c7f648d700 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0aa25adc72c70cde0a7fdd26b6f9c6fd = $(`<div id="html_0aa25adc72c70cde0a7fdd26b6f9c6fd" style="width: 100.0%; height: 100.0%;">             <b>CHARLES L BRIEANT, JR USCTHS</b><br>             <b>Address:</b> 300 QUARROPAS ST, WHITE PLAINS, NY<br>             <b>Available Space:</b> 18,710 sqft (13.8%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Core Business 4 (CB-4)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b>  <strong>RECOMMENDED</strong><br>             <small> Sufficient space (18,710 sqft) |  Zoning permits offices |  Current use may require renovation (building) |  STRONG RECOMMENDATION for office conversion</small>             </div>`)[0];
+                popup_b6c73682328e681fd73765c7f648d700.setContent(html_0aa25adc72c70cde0a7fdd26b6f9c6fd);
+            
+        
+
+        marker_036715b4712ceaee74debfc68bb9c4a4.bindPopup(popup_b6c73682328e681fd73765c7f648d700)
+        ;
+
+        
+    
+    
+            marker_036715b4712ceaee74debfc68bb9c4a4.bindTooltip(
+                `<div>
+                      CHARLES L BRIEANT, JR USCTHS - Office Recommended
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_036715b4712ceaee74debfc68bb9c4a4.setIcon(icon_645c23ca47ed3e8f5348d94b7c691e8f);
+            
+    
+            marker_cluster_461f66be266202bf84abbc446132064d.addTo(feature_group_3e6e14a9e5be8499531fb7b2b246f5b5);
+        
+    
+            feature_group_3e6e14a9e5be8499531fb7b2b246f5b5.addTo(map_752460d259ae8142951013d34b60f99a);
+        
+    
+            var feature_group_401592a62e1a89e13b8c699350c44c79 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_334ccbe5be9a23fcd3d6b90d249126d5 = L.marker(
+                [40.715455, -74.004141],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_9dfad53563cb4d57911c1e1b4c8a47b0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a74207bd3002cb5c9a0efa9a4b7df0a2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0b63b6233d628b125cec1bd5ac767966 = $(`<div id="html_0b63b6233d628b125cec1bd5ac767966" style="width: 100.0%; height: 100.0%;">             <b>JACOB K. JAVITS FB/CIT</b><br>             <b>Address:</b> 26 FEDERAL PLAZA, NEW YORK, NY<br>             <b>Available Space:</b> 239,087 sqft (10.5%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-4)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (239,087 sqft) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_a74207bd3002cb5c9a0efa9a4b7df0a2.setContent(html_0b63b6233d628b125cec1bd5ac767966);
+            
+        
+
+        marker_334ccbe5be9a23fcd3d6b90d249126d5.bindPopup(popup_a74207bd3002cb5c9a0efa9a4b7df0a2)
+        ;
+
+        
+    
+    
+            marker_334ccbe5be9a23fcd3d6b90d249126d5.bindTooltip(
+                `<div>
+                     JACOB K. JAVITS FB/CIT - 10.5% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_334ccbe5be9a23fcd3d6b90d249126d5.setIcon(icon_9dfad53563cb4d57911c1e1b4c8a47b0);
+            
+    
+            var marker_4c6617fd42673b570abe055eadc63e26 = L.marker(
+                [40.702995, -73.800815],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_ed23a751aec8adddfced6aa3e381c3c5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e3fa5dbba56e9c27dc58dd0538aad0cc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4ea8884c8a09b7ded9c0df3bc82870d9 = $(`<div id="html_4ea8884c8a09b7ded9c0df3bc82870d9" style="width: 100.0%; height: 100.0%;">             <b>JOSEPH P. ADDABBO FB</b><br>             <b>Address:</b> 155-10 JAMAICA AVE, JAMAICA, NY<br>             <b>Available Space:</b> 0 sqft (0.0%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-3)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (0 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_e3fa5dbba56e9c27dc58dd0538aad0cc.setContent(html_4ea8884c8a09b7ded9c0df3bc82870d9);
+            
+        
+
+        marker_4c6617fd42673b570abe055eadc63e26.bindPopup(popup_e3fa5dbba56e9c27dc58dd0538aad0cc)
+        ;
+
+        
+    
+    
+            marker_4c6617fd42673b570abe055eadc63e26.bindTooltip(
+                `<div>
+                     JOSEPH P. ADDABBO FB - 0.0% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4c6617fd42673b570abe055eadc63e26.setIcon(icon_ed23a751aec8adddfced6aa3e381c3c5);
+            
+    
+            var marker_829f3f74171e332daed71af5234791c6 = L.marker(
+                [40.6987, -73.99036],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_dab46a89e6f2c4295655c31586604c10 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7de681615ffd4e49323f0557f73b262f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2a0dc149a0e09a6908fb696ca5f43538 = $(`<div id="html_2a0dc149a0e09a6908fb696ca5f43538" style="width: 100.0%; height: 100.0%;">             <b>THEODORE ROOSEVELT US CTHS</b><br>             <b>Address:</b> 225 CADMAN PLAZA SOUTH BUILDING, BROOKLYN, NY<br>             <b>Available Space:</b> 0 sqft (0.0%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Park (P)<br>             <b>Zone Type:</b> Special<br>             <b>Suitable Potential Uses:</b> public, quasi-public, and government, schools and universities, medical, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (0 sqft < 5,000 minimum) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_7de681615ffd4e49323f0557f73b262f.setContent(html_2a0dc149a0e09a6908fb696ca5f43538);
+            
+        
+
+        marker_829f3f74171e332daed71af5234791c6.bindPopup(popup_7de681615ffd4e49323f0557f73b262f)
+        ;
+
+        
+    
+    
+            marker_829f3f74171e332daed71af5234791c6.bindTooltip(
+                `<div>
+                     THEODORE ROOSEVELT US CTHS - 0.0% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_829f3f74171e332daed71af5234791c6.setIcon(icon_dab46a89e6f2c4295655c31586604c10);
+            
+    
+            var marker_2013221c5348ad8705cd9169bd6439bd = L.marker(
+                [40.71368, -74.001221],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_755482cd06458b6dcd4579e2bc4b55be = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a57d862de39caf9613ba6648ecabab4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_370bad9036d825922405714f8de39d34 = $(`<div id="html_370bad9036d825922405714f8de39d34" style="width: 100.0%; height: 100.0%;">             <b>DANIEL P MOYNIHAN USCH</b><br>             <b>Address:</b> 500 PEARL ST, NEW YORK, NY<br>             <b>Available Space:</b> 0 sqft (0.0%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-1)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (0 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_5a57d862de39caf9613ba6648ecabab4.setContent(html_370bad9036d825922405714f8de39d34);
+            
+        
+
+        marker_2013221c5348ad8705cd9169bd6439bd.bindPopup(popup_5a57d862de39caf9613ba6648ecabab4)
+        ;
+
+        
+    
+    
+            marker_2013221c5348ad8705cd9169bd6439bd.bindTooltip(
+                `<div>
+                     DANIEL P MOYNIHAN USCH - 0.0% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2013221c5348ad8705cd9169bd6439bd.setIcon(icon_755482cd06458b6dcd4579e2bc4b55be);
+            
+    
+            var marker_c4e33a2ad7ac002b2b350ac10038a3e8 = L.marker(
+                [40.75071, -73.968921],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_94e94686cb2e81206d547dd3cb2c327b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_463eb211375981636bd556c82f40cd84 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1b8cc6d1298bc5b5e130b4aa7ac3ed85 = $(`<div id="html_1b8cc6d1298bc5b5e130b4aa7ac3ed85" style="width: 100.0%; height: 100.0%;">             <b>RONALD H. BROWN U.S. MISSION TO THE U.N.</b><br>             <b>Address:</b> 799 UNITED NATIONS PLZ, NEW YORK, NY<br>             <b>Available Space:</b> 0 sqft (0.0%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Restricted Central Commercial (C5-2)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (0 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_463eb211375981636bd556c82f40cd84.setContent(html_1b8cc6d1298bc5b5e130b4aa7ac3ed85);
+            
+        
+
+        marker_c4e33a2ad7ac002b2b350ac10038a3e8.bindPopup(popup_463eb211375981636bd556c82f40cd84)
+        ;
+
+        
+    
+    
+            marker_c4e33a2ad7ac002b2b350ac10038a3e8.bindTooltip(
+                `<div>
+                     RONALD H. BROWN U.S. MISSION TO THE U.N. - 0.0% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c4e33a2ad7ac002b2b350ac10038a3e8.setIcon(icon_94e94686cb2e81206d547dd3cb2c327b);
+            
+    
+            var marker_66964a07ad5a54bbc0b031bc98f0a50a = L.marker(
+                [40.6957148, -73.989546],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_9ab886ec26498c67b605e7ff47382a9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ae8ab7b3b97230d5b775d0b417f68e43 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bb620827d57831d025f72ae374fda001 = $(`<div id="html_bb620827d57831d025f72ae374fda001" style="width: 100.0%; height: 100.0%;">             <b>CONRAD B DUBERSTEIN USBNK CTHS</b><br>             <b>Address:</b> 271 CADMAN PLAZA, BROOKLYN, NY<br>             <b>Available Space:</b> 4,553 sqft (0.9%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-1)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (4,553 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_ae8ab7b3b97230d5b775d0b417f68e43.setContent(html_bb620827d57831d025f72ae374fda001);
+            
+        
+
+        marker_66964a07ad5a54bbc0b031bc98f0a50a.bindPopup(popup_ae8ab7b3b97230d5b775d0b417f68e43)
+        ;
+
+        
+    
+    
+            marker_66964a07ad5a54bbc0b031bc98f0a50a.bindTooltip(
+                `<div>
+                     CONRAD B DUBERSTEIN USBNK CTHS - 0.9% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66964a07ad5a54bbc0b031bc98f0a50a.setIcon(icon_9ab886ec26498c67b605e7ff47382a9c);
+            
+    
+            var marker_08e5d1b68a973e68999aa13a8ec61de5 = L.marker(
+                [40.7297759, -74.173007],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_ba9625a22bceab0c6c39047bad881ae9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c1a15812f4699585760c3eee16491195 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0bef421118265b45adb7129f085c4973 = $(`<div id="html_0bef421118265b45adb7129f085c4973" style="width: 100.0%; height: 100.0%;">             <b>MLK, JR COURTHOUSE</b><br>             <b>Address:</b> 50 WALNUT STREET, NEWARK, NJ<br>             <b>Available Space:</b> 6,759 sqft (2.2%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Redevelopment Zone (RDV)<br>             <b>Zone Type:</b> Special<br>             <b>Suitable Potential Uses:</b> N/A<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (6,759 sqft) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_c1a15812f4699585760c3eee16491195.setContent(html_0bef421118265b45adb7129f085c4973);
+            
+        
+
+        marker_08e5d1b68a973e68999aa13a8ec61de5.bindPopup(popup_c1a15812f4699585760c3eee16491195)
+        ;
+
+        
+    
+    
+            marker_08e5d1b68a973e68999aa13a8ec61de5.bindTooltip(
+                `<div>
+                     MLK, JR COURTHOUSE - 2.2% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_08e5d1b68a973e68999aa13a8ec61de5.setIcon(icon_ba9625a22bceab0c6c39047bad881ae9);
+            
+    
+            var marker_2b727438d41663b17cc45a6f859ec11c = L.marker(
+                [40.71472, -74.004991],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_706fd5a01f531c3a37863c7f51946dfa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2656f74bbff20083431dd3f8d8b93e18 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f9521262dafaf9215415529315f0bc9 = $(`<div id="html_3f9521262dafaf9215415529315f0bc9" style="width: 100.0%; height: 100.0%;">             <b>TED WEISS FEDERAL BUILDING</b><br>             <b>Address:</b> 290 BROADWAY, NEW YORK, NY<br>             <b>Available Space:</b> 4,742 sqft (0.6%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-4)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (4,742 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_2656f74bbff20083431dd3f8d8b93e18.setContent(html_3f9521262dafaf9215415529315f0bc9);
+            
+        
+
+        marker_2b727438d41663b17cc45a6f859ec11c.bindPopup(popup_2656f74bbff20083431dd3f8d8b93e18)
+        ;
+
+        
+    
+    
+            marker_2b727438d41663b17cc45a6f859ec11c.bindTooltip(
+                `<div>
+                     TED WEISS FEDERAL BUILDING - 0.6% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b727438d41663b17cc45a6f859ec11c.setIcon(icon_706fd5a01f531c3a37863c7f51946dfa);
+            
+    
+            var marker_16212e11fc758f4df834d0bbdc524d53 = L.marker(
+                [40.712913, -74.00268],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_b4ed4e75acb2c15b9b579a6c0c8102b7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0144e44d7227bd1afa3dc1d50fe3308 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a1398f9f86c9d21aa0d20163dcf05825 = $(`<div id="html_a1398f9f86c9d21aa0d20163dcf05825" style="width: 100.0%; height: 100.0%;">             <b>SILVIO J MOLLO FB</b><br>             <b>Address:</b> 1 SAINT ANDREWS PLZ, NEW YORK, NY<br>             <b>Available Space:</b> 133,534 sqft (100.0%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-1)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (133,534 sqft) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_c0144e44d7227bd1afa3dc1d50fe3308.setContent(html_a1398f9f86c9d21aa0d20163dcf05825);
+            
+        
+
+        marker_16212e11fc758f4df834d0bbdc524d53.bindPopup(popup_c0144e44d7227bd1afa3dc1d50fe3308)
+        ;
+
+        
+    
+    
+            marker_16212e11fc758f4df834d0bbdc524d53.bindTooltip(
+                `<div>
+                     SILVIO J MOLLO FB - 100.0% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_16212e11fc758f4df834d0bbdc524d53.setIcon(icon_b4ed4e75acb2c15b9b579a6c0c8102b7);
+            
+    
+            var marker_17da3630f593f052667118c6689a25dc = L.marker(
+                [40.6969539, -73.989473],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_4bd0c8fce65ef3508ce96505b630232b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ffb2870ea94c12068d8e706d1a64e18c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_df83f74662472af8d2ca41d185710de9 = $(`<div id="html_df83f74662472af8d2ca41d185710de9" style="width: 100.0%; height: 100.0%;">             <b>EMANUEL CELLER US COURTHOUSE</b><br>             <b>Address:</b> 225 CADMAN PL. EAST, BROOKLYN, NY<br>             <b>Available Space:</b> 2,262 sqft (0.9%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Residence (R7-1)<br>             <b>Zone Type:</b> Residential<br>             <b>Suitable Potential Uses:</b> public, quasi-public, and government, schools and universities, medical, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (2,262 sqft < 5,000 minimum) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_ffb2870ea94c12068d8e706d1a64e18c.setContent(html_df83f74662472af8d2ca41d185710de9);
+            
+        
+
+        marker_17da3630f593f052667118c6689a25dc.bindPopup(popup_ffb2870ea94c12068d8e706d1a64e18c)
+        ;
+
+        
+    
+    
+            marker_17da3630f593f052667118c6689a25dc.bindTooltip(
+                `<div>
+                     EMANUEL CELLER US COURTHOUSE - 0.9% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17da3630f593f052667118c6689a25dc.setIcon(icon_4bd0c8fce65ef3508ce96505b630232b);
+            
+    
+            var marker_b5ffa5ce945a8656d7421a50ab3e32af = L.marker(
+                [40.72832, -74.005551],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_11a17a11a921a3e45784db639fe181ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_83751199b0dd0339556aaf74899ea58b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4439c954043b34a9f99f383c96634794 = $(`<div id="html_4439c954043b34a9f99f383c96634794" style="width: 100.0%; height: 100.0%;">             <b>FEDERAL BLDG-201 VA</b><br>             <b>Address:</b> 201 VARICK ST, NEW YORK, NY<br>             <b>Available Space:</b> 115,355 sqft (12.3%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Light Manufacturing (M1-6)<br>             <b>Zone Type:</b> Industrial<br>             <b>Suitable Potential Uses:</b> general retail, personal services, hotel/motel, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (115,355 sqft) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_83751199b0dd0339556aaf74899ea58b.setContent(html_4439c954043b34a9f99f383c96634794);
+            
+        
+
+        marker_b5ffa5ce945a8656d7421a50ab3e32af.bindPopup(popup_83751199b0dd0339556aaf74899ea58b)
+        ;
+
+        
+    
+    
+            marker_b5ffa5ce945a8656d7421a50ab3e32af.bindTooltip(
+                `<div>
+                     FEDERAL BLDG-201 VA - 12.3% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b5ffa5ce945a8656d7421a50ab3e32af.setIcon(icon_11a17a11a921a3e45784db639fe181ed);
+            
+    
+            var marker_badd4e1a071ea2cb32972306a3329cf7 = L.marker(
+                [40.704444, -74.013723],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_038d1ab534b2bface9712ac72d0782ce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47d16cedf0b9178a038f38cf07f916a2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_373657dc0f7b675ed9838a29e043e080 = $(`<div id="html_373657dc0f7b675ed9838a29e043e080" style="width: 100.0%; height: 100.0%;">             <b>ALEX HAMILTON US CUST HOUSE</b><br>             <b>Address:</b> 1 BOWLING GRN, NEW YORK, NY<br>             <b>Available Space:</b> 33,332 sqft (8.8%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Restricted Central Commercial (C5-5)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (33,332 sqft) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_47d16cedf0b9178a038f38cf07f916a2.setContent(html_373657dc0f7b675ed9838a29e043e080);
+            
+        
+
+        marker_badd4e1a071ea2cb32972306a3329cf7.bindPopup(popup_47d16cedf0b9178a038f38cf07f916a2)
+        ;
+
+        
+    
+    
+            marker_badd4e1a071ea2cb32972306a3329cf7.bindTooltip(
+                `<div>
+                     ALEX HAMILTON US CUST HOUSE - 8.8% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_badd4e1a071ea2cb32972306a3329cf7.setIcon(icon_038d1ab534b2bface9712ac72d0782ce);
+            
+    
+            var marker_a166cabdc13171de27ba7fdfc0ecf7b4 = L.marker(
+                [40.73012, -74.174341],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_58ab1b2bf00188cfb27c34836b1485db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a61d6410f57376aaaeda5db0f73e44fa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_70dd29fcbd8cee33d1ec610a768b3431 = $(`<div id="html_70dd29fcbd8cee33d1ec610a768b3431" style="width: 100.0%; height: 100.0%;">             <b>PETER W. RODINO FB</b><br>             <b>Address:</b> 970 BROAD ST, NEWARK, NJ<br>             <b>Available Space:</b> 9,216 sqft (2.1%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Redevelopment Zone (RDV)<br>             <b>Zone Type:</b> Special<br>             <b>Suitable Potential Uses:</b> N/A<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (9,216 sqft) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_a61d6410f57376aaaeda5db0f73e44fa.setContent(html_70dd29fcbd8cee33d1ec610a768b3431);
+            
+        
+
+        marker_a166cabdc13171de27ba7fdfc0ecf7b4.bindPopup(popup_a61d6410f57376aaaeda5db0f73e44fa)
+        ;
+
+        
+    
+    
+            marker_a166cabdc13171de27ba7fdfc0ecf7b4.bindTooltip(
+                `<div>
+                     PETER W. RODINO FB - 2.1% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a166cabdc13171de27ba7fdfc0ecf7b4.setIcon(icon_58ab1b2bf00188cfb27c34836b1485db);
+            
+    
+            var marker_eb6598dd4c43695b09333f9d9120c89a = L.marker(
+                [40.71388, -74.002681],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_da046ecb26ea39a325f53e19c843db58 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6185ec3a0135e1951b9058c852328a28 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_822ac8fc554fb6e6c672609649ed2b6a = $(`<div id="html_822ac8fc554fb6e6c672609649ed2b6a" style="width: 100.0%; height: 100.0%;">             <b>THURGOOD MARSHALL USCH</b><br>             <b>Address:</b> 40 CENTRE ST, NEW YORK, NY<br>             <b>Available Space:</b> 3,162 sqft (0.6%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> General Central Commercial (C6-4)<br>             <b>Zone Type:</b> Commercial<br>             <b>Suitable Potential Uses:</b> general retail, professional services, personal services, eating and drinking establishments, hotel/motel, parking garage or lot, medical, public, quasi-public, and government, schools and universities, professional office, research and laboratory facilities, equipment rental and repair services (excluding automobiles), contractors office, storage and warehouses, communication towers, communal housing, multi family dwelling<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Insufficient space (3,162 sqft < 5,000 minimum) |  Zoning permits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_6185ec3a0135e1951b9058c852328a28.setContent(html_822ac8fc554fb6e6c672609649ed2b6a);
+            
+        
+
+        marker_eb6598dd4c43695b09333f9d9120c89a.bindPopup(popup_6185ec3a0135e1951b9058c852328a28)
+        ;
+
+        
+    
+    
+            marker_eb6598dd4c43695b09333f9d9120c89a.bindTooltip(
+                `<div>
+                     THURGOOD MARSHALL USCH - 0.6% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eb6598dd4c43695b09333f9d9120c89a.setIcon(icon_da046ecb26ea39a325f53e19c843db58);
+            
+    
+            var marker_a083b3372d502e598e29b47e28a0821e = L.marker(
+                [40.74244, -74.170891],
+                {
+}
+            ).addTo(marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2);
+        
+    
+            var icon_d01f6eafc0cd62bb3ff3478c058cac5b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c1fcee1fdd4ce6a353e6cf08f6f13889 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_26bfa006878b20172b3dc0921e6f12f3 = $(`<div id="html_26bfa006878b20172b3dc0921e6f12f3" style="width: 100.0%; height: 100.0%;">             <b>FED. BLDG. 20 WASHINGTON PLACE</b><br>             <b>Address:</b> 20 WASHINGTON PL, NEWARK, NJ<br>             <b>Available Space:</b> 10,603 sqft (8.1%)<br>             <b>Current Use:</b> BUILDING<br>             <hr>             <b>Zoning:</b> Redevelopment Zone (RDV)<br>             <b>Zone Type:</b> Special<br>             <b>Suitable Potential Uses:</b> N/A<br>             <hr>             <b>Office Conversion:</b> ⚠️ Not Recommended<br>             <small> Sufficient space (10,603 sqft) |  Zoning prohibits offices |  Current use may require renovation (building) |  Not ideal for office conversion</small>             </div>`)[0];
+                popup_c1fcee1fdd4ce6a353e6cf08f6f13889.setContent(html_26bfa006878b20172b3dc0921e6f12f3);
+            
+        
+
+        marker_a083b3372d502e598e29b47e28a0821e.bindPopup(popup_c1fcee1fdd4ce6a353e6cf08f6f13889)
+        ;
+
+        
+    
+    
+            marker_a083b3372d502e598e29b47e28a0821e.bindTooltip(
+                `<div>
+                     FED. BLDG. 20 WASHINGTON PLACE - 8.1% available
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a083b3372d502e598e29b47e28a0821e.setIcon(icon_d01f6eafc0cd62bb3ff3478c058cac5b);
+            
+    
+            marker_cluster_b73a7d8ee3f1a14945ea56bac47864c2.addTo(feature_group_401592a62e1a89e13b8c699350c44c79);
+        
+    
+            feature_group_401592a62e1a89e13b8c699350c44c79.addTo(map_752460d259ae8142951013d34b60f99a);
+        
+    
+            var layer_control_bb0c2ceec1015712d6ee05bf8d41cc36_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_0e47ae25b515d51e2e1b64341ec2750d,
+                },
+                overlays :  {
+                    " Office Recommended" : feature_group_3e6e14a9e5be8499531fb7b2b246f5b5,
+                    "Other Underutilized" : feature_group_401592a62e1a89e13b8c699350c44c79,
+                },
+            };
+            let layer_control_bb0c2ceec1015712d6ee05bf8d41cc36 = L.control.layers(
+                layer_control_bb0c2ceec1015712d6ee05bf8d41cc36_layers.base_layers,
+                layer_control_bb0c2ceec1015712d6ee05bf8d41cc36_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_752460d259ae8142951013d34b60f99a);
+
+        
+</script>
+</html>
